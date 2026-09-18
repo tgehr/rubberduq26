@@ -1,0 +1,36 @@
+t := 6;
+def phase_u(const x:uint[t]){
+	//phase(2·π·(x as !ℕ)/2^t);
+	for i in 0..t{
+		if x[i]{ phase(2·π·2^i/2^t); }
+	}
+}
+
+def f(n:!ℕ)(x:𝔹){
+	if x{
+		k := 42:!uint[t];
+	}else{
+		k := 17:!uint[t];
+	}
+	phase_u(n*k);
+	return x;
+}
+
+def estimate_phase[a:qtype](
+	const f: !ℕ →qfree a →mfree a,
+	x:a
+){
+	k:=0:!uint[t];
+	for i in 0..t{
+		bit:=H(0);
+		if bit{
+			nrep:=2^(t-1 sub i);
+			x := f(nrep)(x);
+			phase_u(-nrep*k);
+		}
+		(k[i],0):=(H(bit),k[i]);
+	}
+	return (k,x);
+}
+
+def main() ⇒ estimate_phase(f,H(0));
