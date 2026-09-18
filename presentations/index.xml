@@ -32,7 +32,712 @@ M834 80h400000v40h-400000z"></path></svg></span></span></span><span class="vlist
 
 &lt;hr&gt;
 &lt;h1 id="interactive-plotting"&gt;Interactive plotting&lt;/h1&gt;
-&lt;p&gt;The same shortcode system supports live parameters. Move either slider:&lt;/p&gt;</description></item><item><title>Quantum Computing Crash Course</title><link/>https://tgehr.github.io/rubberduq26/presentations/dconf26/<pubdate>Mon, 01 Jan 0001 00:00:00 +0000</pubdate><guid>https://tgehr.github.io/rubberduq26/presentations/dconf26/</guid><description>&lt;h1 id="quantum-computing-crash-course"&gt;Quantum Computing Crash Course&lt;/h1&gt;
+&lt;p&gt;The same shortcode system supports live parameters. Move either slider:&lt;/p&gt;</description></item><item><title>Practical High-level Quantum Programming</title><link/>https://tgehr.github.io/rubberduq26/presentations/nvidia26/<pubdate>Mon, 01 Jan 0001 00:00:00 +0000</pubdate><guid>https://tgehr.github.io/rubberduq26/presentations/nvidia26/</guid><description>&lt;!--
+Ported from the Beamer source presentation(1).tex.
+The original deck references figure assets under elements/. Those binaries were
+not included with the uploaded TeX source. The slideimg shortcode below resolves
+static/elements/&lt;name&gt; plus common web-image extensions when those files are
+added to the Hugo project; until then it shows an explicit placeholder.
+--&gt;
+&lt;style&gt;
+ body.presentation-page:has(.eth-title-frame) {
+ --eth-blue: #215caf;
+ --eth-red: #b7352d;
+ --eth-link: var(--link);
+ background: var(--bg);
+ }
+
+ 
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) {
+ color-scheme: dark;
+ --bg: #0b0d12;
+ --fg: #e8e8ea;
+ --muted: #9aa0a6;
+ --link: #8ab4f8;
+ --card: #12141b;
+ --border: #272b36;
+ --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+ --surface-1: #161616;
+ --surface-2: #0e0e0e;
+ --surface-3: #1d1d1d;
+ --border-1: #3a3a3a;
+ --text-1: #e6e6e6;
+ --code-bg: #0b0c10;
+ --code-fg: #e8e8ea;
+ --code-border: #272b36;
+ --code-inline-bg: rgba(255, 255, 255, 0.06);
+ --code-inline-fg: #e8e8ea;
+ --plot-color: rgba(255, 255, 255, 0.9);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) pre {
+ background: var(--code-bg);
+ border-color: var(--code-border);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-kw { color: #c792ea; font-weight: 600; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-type { color: #82aaff; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-ident { color: #e8e8ea; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-fn { color: #7ee787; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-quantum-op { color: #f78c6c; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-const,
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-number { color: #fca5a5; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-string { color: #ecc48d; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-comment {
+ color: #9fd3c8;
+ font-style: normal;
+ font-weight: 600;
+ opacity: 0.95;
+ }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-err { background: #525f70; color: #000; }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) {
+ color-scheme: light;
+ --bg: #fff;
+ --fg: #1b1f23;
+ --muted: #5f6368;
+ --link: #215caf;
+ --card: #fff;
+ --border: #e6e6e6;
+ --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+ --surface-1: #fff;
+ --surface-2: #f8f8f8;
+ --surface-3: #efefef;
+ --border-1: #d6d6d6;
+ --text-1: #1a1a1a;
+ --code-bg: #f6f8fa;
+ --code-fg: #1b1f23;
+ --code-border: #e6e6e6;
+ --code-inline-bg: #f6f8fa;
+ --code-inline-fg: #1b1f23;
+ --plot-color: rgba(0, 0, 0, 0.85);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-kw { color: #6f42c1; font-weight: 600; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-type { color: #0f5ea8; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-ident { color: #1f2328; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-fn { color: #00684a; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-quantum-op { color: #b54708; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-const,
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-number { color: #b42318; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-string { color: #8a5a00; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-comment {
+ color: #4b2533;
+ font-style: normal;
+ font-weight: 600;
+ opacity: 1;
+ }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-err { background: #fdd; color: #7a0916; }
+
+ body.presentation-page:has(.eth-title-frame) .slide {
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:has(.eth-title-frame) {
+ padding: 0 !important;
+ overflow: hidden;
+ justify-content: stretch;
+ background: #fff !important;
+ border: 0 !important;
+ box-shadow: none !important;
+ text-align: left !important;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) {
+ background: var(--card);
+ color: var(--fg);
+ border-color: var(--border);
+ box-shadow: var(--shadow);
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) h1,
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) h2 {
+ color: var(--fg);
+ font-weight: 400;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) a {
+ color: var(--eth-link);
+ }
+
+ .eth-title-frame {
+ position: absolute;
+ inset: 0;
+ overflow: hidden;
+ background: #fff;
+ color: #111;
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+
+ .eth-title-figure {
+ position: absolute;
+ z-index: 0;
+ left: 5.9375%;
+ top: 53.89%;
+ width: 88.125%;
+ height: auto;
+ transform: translateY(-50%);
+ object-fit: contain;
+ }
+
+ .eth-title-figure-fallback {
+ position: absolute;
+ z-index: 0;
+ left: 5.9375%;
+ right: 5.9375%;
+ top: 14.5%;
+ bottom: 7%;
+ background: #f3f3f3;
+ }
+
+ .eth-title-logo {
+ position: absolute;
+ z-index: 3;
+ left: 5.9375%;
+ top: 5.1%;
+ height: 4.45%;
+ width: auto;
+ max-width: 24%;
+ object-fit: contain;
+ }
+
+ .eth-title-logo-fallback {
+ position: absolute;
+ z-index: 3;
+ left: 5.9375%;
+ top: 5.2%;
+ color: #111;
+ font-size: 24px;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ }
+
+ .eth-title-institute {
+ position: absolute;
+ z-index: 3;
+ top: 5.6%;
+ right: 5.9375%;
+ min-width: 12rem;
+ color: #111;
+ font-size: 19px;
+ line-height: 1.18;
+ text-align: left;
+ }
+
+ .eth-title-band {
+ position: absolute;
+ z-index: 2;
+ left: -7.5%;
+ top: 52.22%;
+ display: flex;
+ width: 49%;
+ min-height: 22.22%;
+ padding: 50px 6.5% 50px 19.13%;
+ box-sizing: border-box;
+ align-items: center;
+ transform: translateY(-50%);
+ background: var(--eth-blue);
+ color: #fff;
+ }
+
+ .eth-title-copy {
+ width: 100%;
+ max-width: 100%;
+ }
+
+ .eth-title-heading {
+ margin: 0 !important;
+ color: #fff !important;
+ font-size: 60px !important;
+ font-weight: 400 !important;
+ line-height: 1.2 !important;
+ letter-spacing: -0.012em;
+ text-wrap: balance;
+ }
+
+ .eth-title-author {
+ margin-top: 30px;
+ color: #fff;
+ font-size: 35px;
+ font-weight: 700;
+ line-height: 1.2;
+ }
+
+ .eth-title-date {
+ margin-top: 2px;
+ color: #fff;
+ font-size: 35px;
+ font-weight: 400;
+ line-height: 1.2;
+ }
+
+ .eth-slide-footer {
+ position: absolute;
+ z-index: 5;
+ right: 5.625%;
+ bottom: 3.33%;
+ left: 5.625%;
+ display: flex;
+ min-height: 2.3rem;
+ align-items: flex-end;
+ justify-content: space-between;
+ gap: 2rem;
+ color: var(--fg);
+ font-size: 0.43em;
+ font-variant-numeric: tabular-nums;
+ line-height: 1.1;
+ pointer-events: none;
+ }
+
+ .eth-slide-footer-left,
+ .eth-slide-footer-right {
+ display: flex;
+ }
+
+ .eth-slide-footer-left {
+ min-width: 0;
+ align-items: flex-start;
+ gap: 1.3rem;
+ }
+
+ .eth-slide-footer-right {
+ align-items: flex-end;
+ }
+
+ .eth-slide-footer-logo {
+ display: block;
+ width: 8.125rem;
+ max-width: 18vw;
+ height: auto;
+ object-fit: contain;
+ object-position: left top;
+ }
+
+ .eth-slide-footer-logo--neg {
+ 
+ display: none;
+ }
+
+ .eth-slide-footer-institute {
+ width: 15.625rem;
+ max-width: 28vw;
+ min-height: 2.2em;
+ line-height: 1.1;
+ white-space: normal;
+ }
+
+ .eth-slide-footer-right {
+ flex: 0 0 auto;
+ gap: 1.65rem;
+ white-space: nowrap;
+ }
+
+ 
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .eth-slide-footer-logo--pos {
+ filter: brightness(0) invert(1);
+ }
+
+ @media (prefers-color-scheme: dark) {
+ body.presentation-page:has(.eth-title-frame[data-content-theme="auto"]) .eth-slide-footer-logo--pos {
+ filter: brightness(0) invert(1);
+ }
+ }
+
+ @media print {
+ body.presentation-page:has(.eth-title-frame),
+ body.presentation-page:has(.eth-title-frame) .slide,
+ .eth-title-frame {
+ -webkit-print-color-adjust: exact !important;
+ print-color-adjust: exact !important;
+ }
+ }
+&lt;/style&gt;
+
+&lt;div class="eth-title-frame"
+ data-content-theme="dark"
+ data-eth-footer="true"
+ data-eth-footer-shortdate="Nvidia, 2026"
+ data-eth-footer-institute1="SRI Lab"
+ data-eth-footer-institute2="D-INFK"
+ data-eth-footer-logo-pos="/rubberduq26/elements/eth_logo_kurz_pos.web.svg"
+ data-eth-footer-logo-neg="/rubberduq26/elements/eth_logo_kurz_neg.web.svg"&gt;&lt;img class="eth-title-figure" src="https://tgehr.github.io/rubberduq26/elements/title-page-image.jpg" alt=""&gt;&lt;img class="eth-title-logo" src="https://tgehr.github.io/rubberduq26/elements/eth_logo_kurz_pos.web.svg" alt="ETH Zürich"&gt;&lt;div class="eth-title-institute"&gt;&lt;div&gt;SRI Lab&lt;/div&gt;&lt;div&gt;D-INFK&lt;/div&gt;&lt;/div&gt;
+
+ &lt;div class="eth-title-band"&gt;
+ &lt;div class="eth-title-copy"&gt;
+ &lt;h1 class="eth-title-heading"&gt;Practical High-level Quantum Programming&lt;/h1&gt;&lt;div class="eth-title-author"&gt;Timon Gehr&lt;/div&gt;&lt;div class="eth-title-date"&gt;External Talk at Nvidia, August 2026&lt;/div&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;hr&gt;
+&lt;h1 id="low-level-quantum-programming"&gt;Low-level quantum programming&lt;/h1&gt;
+&lt;p&gt;Aspects of low-level quantum languages:&lt;/p&gt;</description></item><item><title>Practical High-level Quantum Programming</title><link/>https://tgehr.github.io/rubberduq26/presentations/rubberduq26/<pubdate>Mon, 01 Jan 0001 00:00:00 +0000</pubdate><guid>https://tgehr.github.io/rubberduq26/presentations/rubberduq26/</guid><description>&lt;style&gt;
+ body.presentation-page:has(.eth-title-frame) {
+ --eth-blue: #215caf;
+ --eth-red: #b7352d;
+ --eth-link: var(--link);
+ background: var(--bg);
+ }
+
+ 
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) {
+ color-scheme: dark;
+ --bg: #0b0d12;
+ --fg: #e8e8ea;
+ --muted: #9aa0a6;
+ --link: #8ab4f8;
+ --card: #12141b;
+ --border: #272b36;
+ --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+ --surface-1: #161616;
+ --surface-2: #0e0e0e;
+ --surface-3: #1d1d1d;
+ --border-1: #3a3a3a;
+ --text-1: #e6e6e6;
+ --code-bg: #0b0c10;
+ --code-fg: #e8e8ea;
+ --code-border: #272b36;
+ --code-inline-bg: rgba(255, 255, 255, 0.06);
+ --code-inline-fg: #e8e8ea;
+ --plot-color: rgba(255, 255, 255, 0.9);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) pre {
+ background: var(--code-bg);
+ border-color: var(--code-border);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-kw { color: #c792ea; font-weight: 600; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-type { color: #82aaff; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-ident { color: #e8e8ea; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-fn { color: #7ee787; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-quantum-op { color: #f78c6c; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-const,
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-number { color: #fca5a5; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-string { color: #ecc48d; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-comment {
+ color: #9fd3c8;
+ font-style: normal;
+ font-weight: 600;
+ opacity: 0.95;
+ }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .tok-err { background: #525f70; color: #000; }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) {
+ color-scheme: light;
+ --bg: #fff;
+ --fg: #1b1f23;
+ --muted: #5f6368;
+ --link: #215caf;
+ --card: #fff;
+ --border: #e6e6e6;
+ --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+ --surface-1: #fff;
+ --surface-2: #f8f8f8;
+ --surface-3: #efefef;
+ --border-1: #d6d6d6;
+ --text-1: #1a1a1a;
+ --code-bg: #f6f8fa;
+ --code-fg: #1b1f23;
+ --code-border: #e6e6e6;
+ --code-inline-bg: #f6f8fa;
+ --code-inline-fg: #1b1f23;
+ --plot-color: rgba(0, 0, 0, 0.85);
+ }
+
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-kw { color: #6f42c1; font-weight: 600; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-type { color: #0f5ea8; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-ident { color: #1f2328; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-fn { color: #00684a; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-quantum-op { color: #b54708; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-const,
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-number { color: #b42318; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-string { color: #8a5a00; }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-comment {
+ color: #4b2533;
+ font-style: normal;
+ font-weight: 600;
+ opacity: 1;
+ }
+ body.presentation-page:has(.eth-title-frame[data-content-theme="light"]) .tok-err { background: #fdd; color: #7a0916; }
+
+ body.presentation-page:has(.eth-title-frame) .slide {
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:has(.eth-title-frame) {
+ padding: 0 !important;
+ overflow: hidden;
+ justify-content: stretch;
+ background: #fff !important;
+ border: 0 !important;
+ box-shadow: none !important;
+ text-align: left !important;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) {
+ background: var(--card);
+ color: var(--fg);
+ border-color: var(--border);
+ box-shadow: var(--shadow);
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) h1,
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) h2 {
+ color: var(--fg);
+ font-weight: 400;
+ }
+
+ body.presentation-page:has(.eth-title-frame) .slide:not(:has(.eth-title-frame)) a {
+ color: var(--eth-link);
+ }
+
+ .eth-title-frame {
+ position: absolute;
+ inset: 0;
+ overflow: hidden;
+ background: #fff;
+ color: #111;
+ font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ }
+
+ .eth-title-figure {
+ position: absolute;
+ z-index: 0;
+ left: 5.9375%;
+ top: 53.89%;
+ width: 88.125%;
+ height: auto;
+ transform: translateY(-50%);
+ object-fit: contain;
+ }
+
+ .eth-title-figure-fallback {
+ position: absolute;
+ z-index: 0;
+ left: 5.9375%;
+ right: 5.9375%;
+ top: 14.5%;
+ bottom: 7%;
+ background: #f3f3f3;
+ }
+
+ .eth-title-logo {
+ position: absolute;
+ z-index: 3;
+ left: 5.9375%;
+ top: 5.1%;
+ height: 4.45%;
+ width: auto;
+ max-width: 24%;
+ object-fit: contain;
+ }
+
+ .eth-title-logo-fallback {
+ position: absolute;
+ z-index: 3;
+ left: 5.9375%;
+ top: 5.2%;
+ color: #111;
+ font-size: 24px;
+ font-weight: 700;
+ letter-spacing: -0.02em;
+ }
+
+ .eth-title-institute {
+ position: absolute;
+ z-index: 3;
+ top: 5.6%;
+ right: 5.9375%;
+ min-width: 12rem;
+ color: #111;
+ font-size: 19px;
+ line-height: 1.18;
+ text-align: left;
+ }
+
+ .eth-title-band {
+ position: absolute;
+ z-index: 2;
+ left: -7.5%;
+ top: 52.22%;
+ display: flex;
+ width: 49%;
+ min-height: 22.22%;
+ padding: 50px 6.5% 50px 19.13%;
+ box-sizing: border-box;
+ align-items: center;
+ transform: translateY(-50%);
+ background: var(--eth-blue);
+ color: #fff;
+ }
+
+ .eth-title-copy {
+ width: 100%;
+ max-width: 100%;
+ }
+
+ .eth-title-heading {
+ margin: 0 !important;
+ color: #fff !important;
+ font-size: 60px !important;
+ font-weight: 400 !important;
+ line-height: 1.2 !important;
+ letter-spacing: -0.012em;
+ text-wrap: balance;
+ }
+
+ .eth-title-author {
+ margin-top: 30px;
+ color: #fff;
+ font-size: 35px;
+ font-weight: 700;
+ line-height: 1.2;
+ }
+
+ .eth-title-date {
+ margin-top: 2px;
+ color: #fff;
+ font-size: 35px;
+ font-weight: 400;
+ line-height: 1.2;
+ }
+
+ .eth-slide-footer {
+ position: absolute;
+ z-index: 5;
+ right: 5.625%;
+ bottom: 3.33%;
+ left: 5.625%;
+ display: flex;
+ min-height: 2.3rem;
+ align-items: flex-end;
+ justify-content: space-between;
+ gap: 2rem;
+ color: var(--fg);
+ font-size: 0.43em;
+ font-variant-numeric: tabular-nums;
+ line-height: 1.1;
+ pointer-events: none;
+ }
+
+ .eth-slide-footer-left,
+ .eth-slide-footer-right {
+ display: flex;
+ }
+
+ .eth-slide-footer-left {
+ min-width: 0;
+ align-items: flex-start;
+ gap: 1.3rem;
+ }
+
+ .eth-slide-footer-right {
+ align-items: flex-end;
+ }
+
+ .eth-slide-footer-logo {
+ display: block;
+ width: 8.125rem;
+ max-width: 18vw;
+ height: auto;
+ object-fit: contain;
+ object-position: left top;
+ }
+
+ .eth-slide-footer-logo--neg {
+ 
+ display: none;
+ }
+
+ .eth-slide-footer-institute {
+ width: 15.625rem;
+ max-width: 28vw;
+ min-height: 2.2em;
+ line-height: 1.1;
+ white-space: normal;
+ }
+
+ .eth-slide-footer-right {
+ flex: 0 0 auto;
+ gap: 1.65rem;
+ white-space: nowrap;
+ }
+
+ 
+ body.presentation-page:has(.eth-title-frame[data-content-theme="dark"]) .eth-slide-footer-logo--pos {
+ filter: brightness(0) invert(1);
+ }
+
+ @media (prefers-color-scheme: dark) {
+ body.presentation-page:has(.eth-title-frame[data-content-theme="auto"]) .eth-slide-footer-logo--pos {
+ filter: brightness(0) invert(1);
+ }
+ }
+
+ @media print {
+ body.presentation-page:has(.eth-title-frame),
+ body.presentation-page:has(.eth-title-frame) .slide,
+ .eth-title-frame {
+ -webkit-print-color-adjust: exact !important;
+ print-color-adjust: exact !important;
+ }
+ }
+&lt;/style&gt;
+
+&lt;div class="eth-title-frame"
+ data-content-theme="dark"
+ data-eth-footer="true"
+ data-eth-footer-shortdate="RubberDUQ WS, 2026"
+ data-eth-footer-institute1="SRI Lab"
+ data-eth-footer-institute2="D-INFK"
+ data-eth-footer-logo-pos="/rubberduq26/elements/eth_logo_kurz_pos.web.svg"
+ data-eth-footer-logo-neg="/rubberduq26/elements/eth_logo_kurz_neg.web.svg"&gt;&lt;img class="eth-title-figure" src="https://tgehr.github.io/rubberduq26/elements/title-page-image.jpg" alt=""&gt;&lt;img class="eth-title-logo" src="https://tgehr.github.io/rubberduq26/elements/eth_logo_kurz_pos.web.svg" alt="ETH Zürich"&gt;&lt;div class="eth-title-institute"&gt;&lt;div&gt;SRI Lab&lt;/div&gt;&lt;div&gt;D-INFK&lt;/div&gt;&lt;/div&gt;
+
+ &lt;div class="eth-title-band"&gt;
+ &lt;div class="eth-title-copy"&gt;
+ &lt;h1 class="eth-title-heading"&gt;Practical High-level Quantum Programming&lt;/h1&gt;&lt;div class="eth-title-author"&gt;Timon Gehr&lt;/div&gt;&lt;div class="eth-title-date"&gt;RubberDUQ Workshop, September 2026&lt;/div&gt;&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- # Low-level quantum programming --&gt;
+&lt;!-- Aspects of low-level quantum languages: --&gt;
+&lt;!-- - Classical (high-level) programs **construct quantum circuits** (AOT or JIT). --&gt;
+&lt;!-- - Strong separation, **quantum is second-class**. --&gt;
+&lt;!-- - Limited or **no quantum control flow**. --&gt;
+&lt;!-- - Very **limited data abstraction** (e.g., a single qubit register). --&gt;
+&lt;!-- - **Manual resource allocation**/deallocation/reuse. --&gt;
+&lt;!-- - Representation encourages **losing information**. --&gt;
+&lt;!-- - Representation encourages **early commitment** to specific implementation details. --&gt;
+&lt;!-- - Typically: **Hand-rolled** design automation. --&gt;
+&lt;!-- - ... --&gt;
+&lt;!-- --- --&gt;
+&lt;!-- # High-level quantum programming --&gt;
+&lt;!-- Aspects of high-level quantum languages: --&gt;
+&lt;!-- - High-level quantum programs **perform the computation**. --&gt;
+&lt;!-- - **Uniform syntax and semantics**. Classical is a special case of quantum. --&gt;
+&lt;!-- - **Quantum control flow**, beyond controlled gates. --&gt;
+&lt;!-- - **Quantum data abstracted** into first-class **variables** of the language. --&gt;
+&lt;!-- - **Automatic resource management**. --&gt;
+&lt;!-- - Representation encourages **encoding intent / preserving information**. --&gt;
+&lt;!-- - Representation encourages **no/late commitment** to specific implementation details. --&gt;
+&lt;!-- - Typically: **Shared design automation** infrastructure. --&gt;
+&lt;!-- - ... --&gt;
+&lt;!-- --- --&gt;
+&lt;hr&gt;
+&lt;h1 id="this-presentation"&gt;This presentation&lt;/h1&gt;
+&lt;p&gt;Interactive slides at:
+&lt;div class="slide-qr"
+ style="display:block;width:100%;max-width:min(100%,560px);margin:0.25em auto;text-align:center;"&gt;
+ &lt;div class="slide-qr-code"
+ data-slide-qr-code
+ data-qr-text="https://tgehr.github.io/rubberduq26"
+ data-qr-alt="slides QR code"
+ style="display:block;width:100%;aspect-ratio:1/1;box-sizing:border-box;margin:0 auto;"&gt;&lt;/div&gt;
+ &lt;code class="slide-qr-text"
+ style="display:block;margin:0.35em auto 0;padding:0;background:transparent;color:inherit;font:0.72em/1.3 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,'Liberation Mono',monospace;overflow-wrap:anywhere;white-space:normal;user-select:text;"&gt;https://tgehr.github.io/rubberduq26&lt;/code&gt;
+&lt;/div&gt;
+&lt;/p&gt;</description></item><item><title>Quantum Computing Crash Course</title><link/>https://tgehr.github.io/rubberduq26/presentations/dconf26/<pubdate>Mon, 01 Jan 0001 00:00:00 +0000</pubdate><guid>https://tgehr.github.io/rubberduq26/presentations/dconf26/</guid><description>&lt;h1 id="quantum-computing-crash-course"&gt;Quantum Computing Crash Course&lt;/h1&gt;
 &lt;h2 id="dconf26"&gt;DConf'26&lt;/h2&gt;
 &lt;h3 id="timon-gehr"&gt;Timon Gehr&lt;/h3&gt;
 &lt;hr&gt;
@@ -200,8 +905,7 @@ def main() =&amp;gt; assert(bernstein_vazirani(f) == [0,1,0,1,1]);&lt;/code&gt;&
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;&lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="o"&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;3.1f&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="o"&gt;;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;div class="twocolumn-column"&gt;&lt;pre class="silq-code-window"&gt;&lt;code class="language-silq"&gt;// no initializer needed
 if x {
