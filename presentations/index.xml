@@ -344,6 +344,47 @@ added to the Hugo project; until then it shows an explicit placeholder.
  }
 
  @media print {
+ 
+ body.presentation-page:has(.eth-title-frame) .slide:has(.eth-title-frame) {
+ position: relative !important;
+ top: auto !important;
+ left: auto !important;
+ width: 100vw !important;
+ height: 56.25vw !important;
+ transform: none !important;
+ flex: 0 0 auto;
+ }
+
+ 
+ .eth-title-band {
+ display: block;
+ padding-top: 3.125vw;
+ padding-bottom: 3.125vw;
+ }
+
+ 
+ .eth-title-heading {
+ font-size: 3.75vw !important;
+ }
+
+ .eth-title-author,
+ .eth-title-date {
+ font-size: 2.1875vw;
+ }
+
+ .eth-title-author {
+ margin-top: 1.875vw;
+ }
+
+ .eth-title-logo-fallback {
+ font-size: 1.5vw;
+ }
+
+ .eth-title-institute {
+ min-width: 12vw;
+ font-size: 1.1875vw;
+ }
+
  body.presentation-page:has(.eth-title-frame),
  body.presentation-page:has(.eth-title-frame) .slide,
  .eth-title-frame {
@@ -675,6 +716,47 @@ added to the Hugo project; until then it shows an explicit placeholder.
  }
 
  @media print {
+ 
+ body.presentation-page:has(.eth-title-frame) .slide:has(.eth-title-frame) {
+ position: relative !important;
+ top: auto !important;
+ left: auto !important;
+ width: 100vw !important;
+ height: 56.25vw !important;
+ transform: none !important;
+ flex: 0 0 auto;
+ }
+
+ 
+ .eth-title-band {
+ display: block;
+ padding-top: 3.125vw;
+ padding-bottom: 3.125vw;
+ }
+
+ 
+ .eth-title-heading {
+ font-size: 3.75vw !important;
+ }
+
+ .eth-title-author,
+ .eth-title-date {
+ font-size: 2.1875vw;
+ }
+
+ .eth-title-author {
+ margin-top: 1.875vw;
+ }
+
+ .eth-title-logo-fallback {
+ font-size: 1.5vw;
+ }
+
+ .eth-title-institute {
+ min-width: 12vw;
+ font-size: 1.1875vw;
+ }
+
  body.presentation-page:has(.eth-title-frame),
  body.presentation-page:has(.eth-title-frame) .slide,
  .eth-title-frame {

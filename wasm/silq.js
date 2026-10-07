@@ -5295,6 +5295,7 @@ var __D4qsim11__moduleRefZ = Module['__D4qsim11__moduleRefZ'] = makeInvalidEarly
 var __D3std6system11__moduleRefZ = Module['__D3std6system11__moduleRefZ'] = makeInvalidEarlyAccess('__D3std6system11__moduleRefZ');
 var __D3std8bitmanip11__moduleRefZ = Module['__D3std8bitmanip11__moduleRefZ'] = makeInvalidEarlyAccess('__D3std8bitmanip11__moduleRefZ');
 var __D3std8internal16unicode_grapheme11__moduleRefZ = Module['__D3std8internal16unicode_grapheme11__moduleRefZ'] = makeInvalidEarlyAccess('__D3std8internal16unicode_grapheme11__moduleRefZ');
+var __D3ast12looplowering11__moduleRefZ = Module['__D3ast12looplowering11__moduleRefZ'] = makeInvalidEarlyAccess('__D3ast12looplowering11__moduleRefZ');
 var __D3ast9lowerings11__moduleRefZ = Module['__D3ast9lowerings11__moduleRefZ'] = makeInvalidEarlyAccess('__D3ast9lowerings11__moduleRefZ');
 var __D3ast7reverse11__moduleRefZ = Module['__D3ast7reverse11__moduleRefZ'] = makeInvalidEarlyAccess('__D3ast7reverse11__moduleRefZ');
 var __D3ast10conversion11__moduleRefZ = Module['__D3ast10conversion11__moduleRefZ'] = makeInvalidEarlyAccess('__D3ast10conversion11__moduleRefZ');
@@ -5514,6 +5515,7 @@ function assignWasmExports(wasmExports) {
   assert(typeof wasmExports['_D3std6system11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3std6system11__moduleRefZ');
   assert(typeof wasmExports['_D3std8bitmanip11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3std8bitmanip11__moduleRefZ');
   assert(typeof wasmExports['_D3std8internal16unicode_grapheme11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3std8internal16unicode_grapheme11__moduleRefZ');
+  assert(typeof wasmExports['_D3ast12looplowering11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3ast12looplowering11__moduleRefZ');
   assert(typeof wasmExports['_D3ast9lowerings11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3ast9lowerings11__moduleRefZ');
   assert(typeof wasmExports['_D3ast7reverse11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3ast7reverse11__moduleRefZ');
   assert(typeof wasmExports['_D3ast10conversion11__moduleRefZ'] != 'undefined', 'missing Wasm export: _D3ast10conversion11__moduleRefZ');
@@ -5729,6 +5731,7 @@ function assignWasmExports(wasmExports) {
   __D3std6system11__moduleRefZ = Module['__D3std6system11__moduleRefZ'] = wasmExports['_D3std6system11__moduleRefZ'].value;
   __D3std8bitmanip11__moduleRefZ = Module['__D3std8bitmanip11__moduleRefZ'] = wasmExports['_D3std8bitmanip11__moduleRefZ'].value;
   __D3std8internal16unicode_grapheme11__moduleRefZ = Module['__D3std8internal16unicode_grapheme11__moduleRefZ'] = wasmExports['_D3std8internal16unicode_grapheme11__moduleRefZ'].value;
+  __D3ast12looplowering11__moduleRefZ = Module['__D3ast12looplowering11__moduleRefZ'] = wasmExports['_D3ast12looplowering11__moduleRefZ'].value;
   __D3ast9lowerings11__moduleRefZ = Module['__D3ast9lowerings11__moduleRefZ'] = wasmExports['_D3ast9lowerings11__moduleRefZ'].value;
   __D3ast7reverse11__moduleRefZ = Module['__D3ast7reverse11__moduleRefZ'] = wasmExports['_D3ast7reverse11__moduleRefZ'].value;
   __D3ast10conversion11__moduleRefZ = Module['__D3ast10conversion11__moduleRefZ'] = wasmExports['_D3ast10conversion11__moduleRefZ'].value;
